@@ -3,20 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
     <title>Logic project</title>
   </head>
   <body>
     <!-- <div id="root"></div> -->
 
-    {% load static  %}
+    <!-- {% load static  %} -->
     <form>
-      <input id='formula' placeholder="type formula" type="text">
-      <input value='eval' type="submit">
+      <input id="formula" placeholder="type formula" type="text" />
+      <input value="eval" type="submit" />
     </form>
 
-    <div id='table-container'></div>
+    <div id="table-container"></div>
 
-    <script type='module'  src="{% static "frontend/index.js" %}"></script>
+    <!-- <script type='module'  src="{% static "frontend/index.js" %}"> -->
+    <script type="text/javascript">
+      const tableContainer = document.getElementById("table-container");
+      const form = document.querySelector("form");
+      const formula = document.getElementById("formula");
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        const { value } = formula;
+
+        handleRequest(value);
+      };
+
+      const handleTable = (table) => {
+        tableContainer.innerHTML = table;
+      };
+
+      const handleRequest = (value) => {
+        const body = JSON.stringify({ formula: value });
+        console.log(body);
+        fetch("/api/formula/", {
+          method: "POST",
+          body,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then(({ table }) => handleTable(table));
+      };
+
+      form.addEventListener("submit", handleSubmit);
+    </script>
   </body>
 </html>
