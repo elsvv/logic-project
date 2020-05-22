@@ -12,6 +12,7 @@ notebook = "*"
 django = "*"
 pandas = "*"
 djangorestframework = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
