@@ -9,19 +9,16 @@ const navLinks = [
   { to: "/about", label: "About" },
 ];
 
-const findKey = (path) => {
-  const res = navLinks.indexOf(navLinks.find((l) => l.to == path));
-  console.log(res);
-  return res + "";
-};
+const { Header } = Layout;
 
-const { Header, Content, Footer } = Layout;
 const Navbar = ({}) => {
   return (
-    <header className="navbar__container">
-      <a href="https://llfp.hse.ru/" target="blank">
-        <img className="logo" src={logo} />
-      </a>
+    <Header className="navbar__container">
+      <div className="logo-wrap">
+        <a href="https://llfp.hse.ru/" target="blank">
+          <img className="logo" src={logo} />
+        </a>
+      </div>
       <Menu
         selectedKeys={location.pathname}
         theme="light"
@@ -44,8 +41,9 @@ const Navbar = ({}) => {
         <NavLink to="/truth-table">Truth Tables</NavLink>
         <NavLink to="/about">About</NavLink>
       </div> */}
-    </header>
+    </Header>
   );
 };
+// </header>
 
 export default withRouter(Navbar);

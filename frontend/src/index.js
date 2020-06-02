@@ -6,5 +6,6 @@ import App from "./App";
 import "antd/dist/antd.css";
 
 import "./styles/Navbar.scss";
+import "./styles/TruthTable.scss";
 
 render(<App />, document.getElementById("root"));

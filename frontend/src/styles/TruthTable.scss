@@ -1,0 +1,31 @@
+.table-wrap {
+  table {
+    margin: auto;
+    width: 65%;
+  }
+  thead {
+    padding: 10px 0;
+    tr {
+      text-align: center;
+    }
+  }
+}
+
+.generator__container {
+  min-height: 250px;
+}
+
+.controls__wrap {
+  margin-bottom: 15px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.table-card {
+  margin-top: 20px;
+
+  button {
+    margin-right: 11px;
+  }
+}
