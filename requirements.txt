@@ -6,7 +6,9 @@ backcall==0.1.0
 bleach==3.1.5
 decorator==4.4.2
 defusedxml==0.6.0
+dj-database-url==0.5.0
 Django==3.0.6
+django-heroku==0.3.1
 djangorestframework==3.11.0
 entrypoints==0.3
 gunicorn==20.0.4
@@ -29,7 +31,7 @@ nbformat==5.0.6
 notebook==6.0.3
 numpy==1.18.4
 packaging==20.4
-pandas==1.0.3
+pandas==1.0.4
 pandocfilters==1.4.2
 parso==0.7.0
 pexpect==4.8.0
@@ -37,6 +39,7 @@ pickleshare==0.7.5
 pipfile-requirements==0.3.0
 prometheus-client==0.7.1
 prompt-toolkit==3.0.5
+psycopg2==2.8.5
 ptyprocess==0.6.0
 pycodestyle==2.6.0
 Pygments==2.6.1
@@ -57,5 +60,6 @@ tornado==6.0.4
 traitlets==4.3.3
 wcwidth==0.1.9
 webencodings==0.5.1
+whitenoise==5.1.0
 widgetsnbextension==3.5.1
 zipp==3.1.0
