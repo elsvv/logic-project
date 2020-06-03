@@ -7,9 +7,11 @@ import { post } from "axios";
 const TruthTablePage = () => {
   const [newTabel, setNewTable] = useState("");
   const [formula, setFormula] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formHistory, setFormHistory] = useState([]);
 
   const handleRequest = (formula) => {
+    setLoading(true);
     post("/api/formula/", { formula })
       .then((res) => {
         if (res.status === 500) return Promise.reject(res);
@@ -27,7 +29,8 @@ const TruthTablePage = () => {
       })
       .catch(() => {
         setNewTable(false);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -41,6 +44,7 @@ const TruthTablePage = () => {
             setFormula={setFormula}
             formHistory={formHistory}
             handleRequest={handleRequest}
+            loading={loading}
           />
         </Col>
         <Col span={15}>

@@ -8,11 +8,17 @@ const { Search } = Input;
 
 const preformulas = ["(p&(qvr))>~(s|t)", "p>q>p"];
 
-export default ({ handleRequest, formHistory, formula, setFormula }) => {
+export default ({
+  handleRequest,
+  formHistory,
+  formula,
+  setFormula,
+  loading,
+}) => {
   const inputEl = useRef(null);
 
-  const handleSubmit = (e) => {
-    // e.preventDefault();
+  const handleSubmit = (value, e) => {
+    e.preventDefault();
 
     handleRequest(formula);
   };
@@ -45,6 +51,7 @@ export default ({ handleRequest, formHistory, formula, setFormula }) => {
           value={formula}
           ref={inputEl}
           onSearch={handleSubmit}
+          loading={loading}
           onChange={(e) => setFormula(e.target.value)}
         />
       </form>
