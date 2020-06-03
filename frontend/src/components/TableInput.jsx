@@ -12,7 +12,7 @@ export default ({ handleRequest, formHistory, formula, setFormula }) => {
   const inputEl = useRef(null);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     handleRequest(formula);
   };
@@ -44,7 +44,7 @@ export default ({ handleRequest, formHistory, formula, setFormula }) => {
           size="large"
           value={formula}
           ref={inputEl}
-          onSearch={(value) => console.log(value)}
+          onSearch={handleSubmit}
           onChange={(e) => setFormula(e.target.value)}
         />
       </form>
