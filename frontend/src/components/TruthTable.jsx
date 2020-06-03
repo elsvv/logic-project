@@ -6,6 +6,10 @@ export default ({ table }) => {
   useEffect(() => {
     if (table) {
       renderTable(table);
+    } else if (table === false) {
+      renderTable(
+        "<h4 class='table-error'>Provided formula is not well-formed</h4>"
+      );
     }
   }, [table]);
 

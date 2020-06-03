@@ -11,6 +11,10 @@ const TruthTablePage = () => {
 
   const handleRequest = (formula) => {
     post("/api/formula/", { formula })
+      .then((res) => {
+        if (res.status === 500) return Promise.reject(res);
+        return res;
+      })
       .then(({ data }) => {
         const { table } = data;
         if (!table.includes("F") || !table.includes("T")) {
@@ -21,7 +25,9 @@ const TruthTablePage = () => {
         if (!formHistory.includes(formula))
           setFormHistory([formula, ...formHistory]);
       })
-      .catch((er) => setNewTable(false));
+      .catch(() => {
+        setNewTable(false);
+      });
   };
 
   return (
