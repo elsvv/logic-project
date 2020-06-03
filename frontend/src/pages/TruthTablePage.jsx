@@ -57,7 +57,7 @@ const TruthTablePage = ({
       <div className="page__header">
         <h1 className="page__title">Truth tables</h1>
         <CopyToClipboard
-          text={window.location.origin + "/truth-table/" + formula}
+          text={encodeURI(window.location.origin + "/truth-table/" + formula)}
         >
           <Tooltip title="Share link to your table">
             <Button
