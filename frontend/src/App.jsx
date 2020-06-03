@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Layout } from "antd";
 
-const { Header, Content, Footer } = Layout;
+const { Content } = Layout;
 
 import "./App.css";
 
@@ -24,8 +24,8 @@ const App = () => {
         <Content className="content-layout">
           <Switch>
             <Route path="/truth-table" component={TruthTablePage} />
-            <Route path="/about" component={AboutPage} />
-            <Redirect to="/about" />
+            {/* <Route path="/about" component={AboutPage} /> */}
+            <Redirect to="/truth-table" />
           </Switch>
         </Content>
         <FooterLayout />

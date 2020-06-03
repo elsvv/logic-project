@@ -6,7 +6,7 @@ import logo from "../../static/images/llfp-logo.png";
 
 const navLinks = [
   { to: "/truth-table", label: "Truth Tables" },
-  { to: "/about", label: "About" },
+  // { to: "/about", label: "About" },
 ];
 
 const { Header } = Layout;
