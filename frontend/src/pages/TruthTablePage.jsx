@@ -1,14 +1,28 @@
-import React, { useState } from "react";
-import { Row, Col, Divider } from "antd";
+import React, { useState, useEffect } from "react";
+import { Row, Col, Divider, Button, Tooltip } from "antd";
+import { ShareAltOutlined } from "@ant-design/icons";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
 import TableInput from "../components/TableInput";
 import TruthTable from "../components/TruthTable";
 import { post } from "axios";
+import message from "../utils/message";
 
-const TruthTablePage = () => {
+const TruthTablePage = ({
+  match: {
+    params: { preform },
+  },
+}) => {
   const [newTabel, setNewTable] = useState("");
   const [formula, setFormula] = useState("");
   const [loading, setLoading] = useState(false);
   const [formHistory, setFormHistory] = useState([]);
+
+  useEffect(() => {
+    if (preform) {
+      handleClickFormula(preform);
+    }
+  }, []);
 
   const handleRequest = (formula) => {
     setLoading(true);
@@ -33,9 +47,29 @@ const TruthTablePage = () => {
       .finally(() => setLoading(false));
   };
 
+  const handleClickFormula = (selected) => {
+    setFormula(selected);
+    handleRequest(selected);
+  };
+
   return (
     <div className="truth-table-page">
-      <h1>Truth tables</h1>
+      <div className="page__header">
+        <h1 className="page__title">Truth tables</h1>
+        <CopyToClipboard
+          text={window.location.origin + "/truth-table/" + formula}
+        >
+          <Tooltip title="Share link to your table">
+            <Button
+              shape="circle"
+              onClick={() => message("Link to the table copied!")}
+              className="with-icon-center"
+            >
+              <ShareAltOutlined />
+            </Button>
+          </Tooltip>
+        </CopyToClipboard>
+      </div>
       <Divider />
       <Row>
         <Col span={9}>
@@ -45,6 +79,7 @@ const TruthTablePage = () => {
             formHistory={formHistory}
             handleRequest={handleRequest}
             loading={loading}
+            handleClickFormula={handleClickFormula}
           />
         </Col>
         <Col span={15}>

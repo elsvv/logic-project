@@ -16,3 +16,9 @@ a:visited {
   padding: 15px;
   background-color: #fff;
 }
+
+button.with-icon-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

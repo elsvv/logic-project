@@ -23,7 +23,8 @@ const App = () => {
         <Navbar />
         <Content className="content-layout">
           <Switch>
-            <Route path="/truth-table" component={TruthTablePage} />
+            <Route path="/truth-table/:preform" component={TruthTablePage} />
+            <Route path="/truth-table" exact component={TruthTablePage} />
             {/* <Route path="/about" component={AboutPage} /> */}
             <Redirect to="/truth-table" />
           </Switch>

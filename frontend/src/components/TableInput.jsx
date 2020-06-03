@@ -14,6 +14,7 @@ export default ({
   formula,
   setFormula,
   loading,
+  handleClickFormula,
 }) => {
   const inputEl = useRef(null);
 
@@ -21,11 +22,6 @@ export default ({
     e.preventDefault();
 
     handleRequest(formula);
-  };
-
-  const handleClickFormula = (selected) => {
-    setFormula(selected);
-    handleRequest(selected);
   };
 
   function typeInTextarea(newText, el = document.activeElement) {
@@ -58,7 +54,7 @@ export default ({
       <div className="preformulas_wrap table-card">
         <Divider orientation="left">Use examples:</Divider>
         {preformulas.map((f) => (
-          <Button onClick={() => handleClickFormula(f)} type="dashed">
+          <Button key={f} onClick={() => handleClickFormula(f)} type="dashed">
             {f}
           </Button>
         ))}
