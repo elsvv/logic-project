@@ -7,6 +7,7 @@ import TableInput from "../components/TableInput";
 import TruthTable from "../components/TruthTable";
 import { post } from "axios";
 import message from "../utils/message";
+import encodeToURI from "../utils/encodeToURI";
 
 const TruthTablePage = ({
   match: {
@@ -20,7 +21,8 @@ const TruthTablePage = ({
 
   useEffect(() => {
     if (preform) {
-      handleClickFormula(preform);
+      const decoded = decodeURIComponent(preform);
+      handleClickFormula(decoded);
     }
   }, []);
 
@@ -57,7 +59,7 @@ const TruthTablePage = ({
       <div className="page__header">
         <h1 className="page__title">Truth tables</h1>
         <CopyToClipboard
-          text={encodeURI(window.location.origin + "/truth-table/" + formula)}
+          text={window.location.origin + "/truth-table/" + encodeToURI(formula)}
         >
           <Tooltip title="Share link to your table">
             <Button
