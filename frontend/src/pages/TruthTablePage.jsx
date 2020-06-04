@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Divider, Button, Tooltip } from "antd";
 import { ShareAltOutlined } from "@ant-design/icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useHistory } from "react-router-dom";
 
 import TableInput from "../components/TableInput";
 import TruthTable from "../components/TruthTable";
@@ -18,11 +19,13 @@ const TruthTablePage = ({
   const [formula, setFormula] = useState("");
   const [loading, setLoading] = useState(false);
   const [formHistory, setFormHistory] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     if (preform) {
       const decoded = decodeURIComponent(preform);
       handleClickFormula(decoded);
+      history.push("/truth-table");
     }
   }, []);
 
