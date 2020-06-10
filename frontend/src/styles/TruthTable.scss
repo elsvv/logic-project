@@ -9,6 +9,9 @@
 
   button {
     margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -22,6 +25,23 @@
     tr {
       text-align: center;
     }
+  }
+
+  tbody {
+    tr {
+      td {
+        &:first-of-type {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .true {
+    color: var(--green);
+  }
+  .false {
+    color: var(--red);
   }
 }
 

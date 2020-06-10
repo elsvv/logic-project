@@ -9,15 +9,18 @@ import TruthTable from "../components/TruthTable";
 import { post } from "axios";
 import message from "../utils/message";
 import encodeToURI from "../utils/encodeToURI";
+import generateTable from "../utils/generateTable";
+import isTableValid from "../utils/isTableValid";
 
 const TruthTablePage = ({
   match: {
     params: { preform },
   },
 }) => {
-  const [newTabel, setNewTable] = useState("");
   const [formula, setFormula] = useState("");
   const [loading, setLoading] = useState(false);
+  const [col, setCol] = useState(null);
+  const [data, setData] = useState(null);
   const [formHistory, setFormHistory] = useState([]);
   const history = useHistory();
 
@@ -38,10 +41,14 @@ const TruthTablePage = ({
       })
       .then(({ data }) => {
         const { table } = data;
-        if (!table.includes("F") || !table.includes("T")) {
-          return setNewTable(false);
+
+        if (!isTableValid(table)) {
+          return setData(false);
         }
-        setNewTable(table);
+
+        const { columns, dataSource } = generateTable(table);
+        setCol(columns);
+        setData(dataSource);
 
         if (!formHistory.includes(formula))
           setFormHistory([formula, ...formHistory]);
@@ -68,7 +75,8 @@ const TruthTablePage = ({
             <Button
               shape="circle"
               onClick={() => message("Link to the table copied!")}
-              className="with-icon-center"
+              // className="with-icon-center"
+              disabled={!data}
             >
               <ShareAltOutlined />
             </Button>
@@ -88,7 +96,7 @@ const TruthTablePage = ({
           />
         </Col>
         <Col span={15}>
-          <TruthTable table={newTabel} />
+          <TruthTable dataSource={data} columns={col} />
         </Col>
       </Row>
     </div>

@@ -3,7 +3,7 @@ from django.shortcuts import render
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-from .table_resolver import print_truth_table_html
+from .table_resolver import print_truth_table_html, print_truth_table_for_list
 
 # Create your views here.
 
@@ -15,7 +15,9 @@ def eval_formula(request, *args, **kwargs):
         data = json.loads(request.body.decode())
         formula = data['formula']
 
-        table = print_truth_table_html(formula)
+        # table = print_truth_table_html(formula)
+        table = print_truth_table_for_list([formula], '1', '0')
+
         data = {
             "table": table
         }

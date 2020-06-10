@@ -1,3 +1,8 @@
+:root {
+  --red: #ff4d4f;
+  --green: #389e0d;
+}
+
 a,
 a:visited {
   text-decoration: none;
@@ -17,8 +22,8 @@ a:visited {
   background-color: #fff;
 }
 
-button.with-icon-center {
+/* button.with-icon-center {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */

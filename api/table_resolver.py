@@ -311,10 +311,12 @@ def print_truth_table_for_list(lst, x='T', y='F'):
     table = truth_table_for_list(lst)
     table = replace_TF_table(x, y, table)
     table[0] = list(map(replace_sym, table[0]))
-    df = pd.DataFrame(table[1:], columns=table[0])  # вы
-#   df = df.to_html()
-    df = df.style.set_properties(**{'text-align': 'center'})
-    return df
+
+    return table
+
+#     df = pd.DataFrame(table[1:], columns=table[0])  # вы
+#     df = df.style.set_properties(**{'text-align': 'center'})
+#     return df
 
 
 def print_truth_table_(formula, x='T', y='F'):
