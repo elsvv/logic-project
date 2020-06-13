@@ -24,16 +24,15 @@ export default ({
     handleRequest(formula);
   };
 
-  function typeInTextarea(newText, el = document.activeElement) {
-    const [start, end] = [el.selectionStart, el.selectionEnd];
-    el.setRangeText(newText, start, end, "select");
-  }
-
   const handleClickControl = (operator) => {
-    setFormula(formula + operator);
-    inputEl.current.focus();
+    const { selectionStart } = inputEl.current.input.input;
+    const newFormula =
+      formula.slice(0, selectionStart) +
+      operator +
+      formula.slice(selectionStart);
 
-    // typeInTextarea(operator);
+    setFormula(newFormula);
+    inputEl.current.focus();
   };
 
   return (

@@ -12,7 +12,7 @@ export default ({ dataSource, columns }) => {
           pagination={false}
         />
       ) : dataSource === false ? (
-        <h4 class="table-error">Provided formula is not well-formed</h4>
+        <h3 class="table-error">Provided formula is not well-formed</h3>
       ) : null}
     </div>
   );

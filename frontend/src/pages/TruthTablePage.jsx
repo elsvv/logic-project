@@ -54,7 +54,7 @@ const TruthTablePage = ({
           setFormHistory([formula, ...formHistory]);
       })
       .catch(() => {
-        setNewTable(false);
+        setData(false);
       })
       .finally(() => setLoading(false));
   };

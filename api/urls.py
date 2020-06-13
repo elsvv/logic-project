@@ -1,6 +1,6 @@
 from .views import eval_formula
-from django.urls import path
+from django.conf.urls import url
 
 urlpatterns = [
-    path('', eval_formula)
+    url(r'^formula/', eval_formula)
 ]

@@ -5,8 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .table_resolver import print_truth_table_html, print_truth_table_for_list
 
-# Create your views here.
-
 
 @csrf_exempt
 def eval_formula(request, *args, **kwargs):

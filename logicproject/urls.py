@@ -18,9 +18,8 @@ from django.urls import path, include
 from django.conf.urls import url
 
 urlpatterns = [
-    # path('', include('frontend.urls')),
-    url(r'^$', include('frontend.urls')),
-    path('api/formula/', include('api.urls')),
+    url(r'^api/', include('api.urls')),
     path('admin/', admin.site.urls),
+    url(r'^$', include('frontend.urls')),
     url(r'^(?:.*)/?$', include('frontend.urls'))
 ]
