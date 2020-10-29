@@ -1,4 +1,4 @@
 # Logic calculator
 
 ## Team:
-*  Елисеев Слава
+*  Eliseev Slava
