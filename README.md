@@ -1,4 +1,5 @@
 # Logic calculator
 
 ## Team:
-*  Eliseev Slava
+* Eliseev Slava
+* Dolgorukov Vitaliy
