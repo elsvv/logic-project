@@ -13,8 +13,9 @@ import "./App.css";
 
 import TruthTablePage from "./pages/TruthTablePage";
 import Navbar from "./components/Navbar";
-import AboutPage from "./pages/AboutPage";
+// import AboutPage from "./pages/AboutPage";
 import FooterLayout from "./components/FooterLayout";
+import ModalResolverPage from "./pages/ModalResolverPage";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Switch>
             <Route path="/truth-table/:preform" component={TruthTablePage} />
             <Route path="/truth-table" exact component={TruthTablePage} />
+            <Route path="/modal-resolver" exact component={ModalResolverPage} />
             {/* <Route path="/about" component={AboutPage} /> */}
             <Redirect to="/truth-table" />
           </Switch>
