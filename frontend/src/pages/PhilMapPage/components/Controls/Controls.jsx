@@ -1,7 +1,7 @@
-import React from "react";
-import "./Controls.scss";
+import React from 'react';
+import './Controls.scss';
 
-const Controls = props => {
+const Controls = (props) => {
   const controls = props.controls.map((control, idx) => {
     return (
       <div
@@ -11,7 +11,7 @@ const Controls = props => {
       ></div>
     );
   });
-  return <div className="controls-container">{controls}</div>;
+  return <div className='controls-container'>{controls}</div>;
 };
 
 export default Controls;

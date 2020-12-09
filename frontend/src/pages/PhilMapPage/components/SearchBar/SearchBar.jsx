@@ -1,25 +1,25 @@
-import React from "react";
-import "./SearchBar.scss";
+import React from 'react';
+import './SearchBar.scss';
 
-import PreviewList from "../PreviewList/PreviewList";
-import searchIcon from "../../assets/icons/search.svg";
+import PreviewList from '../PreviewList/PreviewList';
+import searchIcon from '../../../../../static/images/search.svg';
 
-const SearchBar = props => {
+const SearchBar = (props) => {
   return (
-    <div className="searchbar-container">
-      <form className="searchbar" onSubmit={props.handleSubmit}>
+    <div className='searchbar-container'>
+      <form className='searchbar' onSubmit={props.handleSubmit}>
         <input
-          type="text"
+          type='text'
           onChange={props.handleSearch}
-          placeholder="Kant, logic or feminism"
+          placeholder='Kant, logic or feminism'
           // value={this.state.toFind}
         />
-        <button type="submit">
+        <button type='submit'>
           <img src={searchIcon} />
         </button>
       </form>
       <PreviewList
-        default={"Nothing found..."}
+        default={'Nothing found...'}
         handleOption={props.handleOption}
         preview={props.preview}
       />

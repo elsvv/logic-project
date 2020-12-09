@@ -18,32 +18,32 @@
     }
 
     &.back {
-      background-image: url(../../assets/icons/keyboard_backspace-24px.svg);
+      background-image: url(../../../../../static/images/keyboard_backspace-24px.svg);
       cursor: pointer;
     }
 
     &.hide {
-      background-image: url(../../assets/icons/close.svg);
+      background-image: url(../../../../../static/images/close.svg);
       cursor: alias;
     }
 
     &.mini {
-      background-image: url(../../assets/icons/maximize.svg);
+      background-image: url(../../../../../static/images/maximize.svg);
       cursor: alias;
     }
 
     &.max {
-      background-image: url(../../assets/icons/web.svg);
+      background-image: url(../../../../../static/images/web.svg);
       cursor: alias;
     }
 
     &.about {
-      background-image: url(../../assets/icons/info.svg);
+      background-image: url(../../../../../static/images/info.svg);
       cursor: help;
     }
 
     &.colors {
-      background-image: url(../../assets/icons/colors.svg);
+      background-image: url(../../../../../static/images/colors.svg);
       cursor: help;
     }
   }

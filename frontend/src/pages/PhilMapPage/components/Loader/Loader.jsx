@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./Loader.scss";
+import React, { useState, useEffect } from 'react';
+import './Loader.scss';
 
-import Polygons from "../../assets/Polygons";
+import Polygons from './Polygons';
 
-const Loader = props => {
-  // let [cls, setCls] = useState("Polygon-1");
-  let [container, setContainer] = useState(["loader-container"]);
+const Loader = (props) => {
+  let [container, setContainer] = useState(['loader-container']);
   let [degree, setDegree] = useState(10);
   let [rotDeg, setRotDeg] = useState(1);
   let [polygon, setPolygon] = useState(null);
@@ -23,7 +22,7 @@ const Loader = props => {
         }, i * period);
       timer();
       polCount++;
-      setContainer(["loader-container end"]);
+      setContainer(['loader-container end']);
     }
     let maxDegree = 95;
     let diff = maxDegree - degree;
@@ -45,12 +44,12 @@ const Loader = props => {
       className={container}
       style={{
         background: `radial-gradient(50% 50% at 50% 50%, #007296 ${degree}%, rgba(255, 255, 255, 0) 100%)`,
-        transform: `translate(-50%, -50%) rotate(${rotDeg / 10}deg)`
+        transform: `translate(-50%, -50%) rotate(${rotDeg / 10}deg)`,
       }}
       onClick={handleLoad}
     >
       <div
-        className="polygons"
+        className='polygons'
         // style={{ width: 100, height: 100, border: "1px solid blue" }}
       >
         {polygon}

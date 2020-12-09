@@ -1,32 +1,32 @@
-import React from "react";
-import "./LinkSet.scss";
+import React from 'react';
+import './LinkSet.scss';
 
-import wikiLogo from "../../assets/icons/wiki.png";
-import ppLogo from "../../assets/icons/pp.png";
-import sepLogo from "../../assets/icons/sep-red.png";
+import wikiLogo from '../../../../../static/images/wiki.png';
+import ppLogo from '../../../../../static/images/pp.png';
+import sepLogo from '../../../../../static/images/sep-red.png';
 
-const wikiUrl = "https://en.wikipedia.org/wiki/";
-const ppUrl = "https://philpapers.org/s/";
-const sepUrl = "https://plato.stanford.edu/entries/";
+const wikiUrl = 'https://en.wikipedia.org/wiki/';
+const ppUrl = 'https://philpapers.org/s/';
+const sepUrl = 'https://plato.stanford.edu/entries/';
 
-const ppBrowseUrl = "https://philpapers.org/browse/";
-const sepBrowseUrl = "https://plato.stanford.edu/search/searcher.py?query=";
+const ppBrowseUrl = 'https://philpapers.org/browse/';
+const sepBrowseUrl = 'https://plato.stanford.edu/search/searcher.py?query=';
 
 const funcLink = (url, entity, logo, id) => {
   if (!entity) {
     return null;
   }
   return (
-    <a key={id} href={`${url}${entity}`} target="_blank">
+    <a key={id} href={`${url}${entity}`} target='_blank'>
       <img src={logo} />
     </a>
   );
 };
 
-const LinkSet = props => {
+const LinkSet = (props) => {
   let links;
 
-  if (props.src === "pp") {
+  if (props.src === 'pp') {
     const ppBrowse = funcLink(ppBrowseUrl, props.ppData.browse, ppLogo, 1);
     const sepBrowse = funcLink(sepBrowseUrl, props.ppData.label, sepLogo, 2);
 
@@ -40,9 +40,9 @@ const LinkSet = props => {
   }
 
   return (
-    <div className="links-container">
+    <div className='links-container'>
       <h4>{props.title}</h4>
-      <div className="links-set">{links}</div>
+      <div className='links-set'>{links}</div>
     </div>
   );
 };
