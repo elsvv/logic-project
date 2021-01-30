@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react';
 
 const isTrue = (value) => {
-  return value === "T" || value == 1 || value === "⊤";
+  return value === 'T' || value == 1 || value === '⊤';
 };
 
 const generateColumns = (data) => {
   let columns = [
     {
-      title: "",
-      dataIndex: "index",
-      key: "index",
+      title: '',
+      dataIndex: 'index',
+      key: 'index',
     },
     ...data.map((cell) => ({
       title: cell,
       dataIndex: cell,
       key: cell,
       sorter: (a, b) => a[`${cell}`] - b[`${cell}`],
-      sortDirections: ["descend", "ascend"],
+      sortDirections: ['descend', 'ascend'],
     })),
   ];
-  columns[columns.length - 1]["render"] = (value) => (
-    <span className={isTrue(value) ? "true" : "false"}>{value}</span>
+  columns[columns.length - 1]['render'] = (value) => (
+    <span className={isTrue(value) ? 'true' : 'false'}>{value}</span>
   );
   return columns;
 };
@@ -32,10 +32,10 @@ const generateDataSource = (data, columns) => {
 
     const row = {};
     for (let j = 1; j < columns.length; j++) {
-      const title = columns[j]["title"];
+      const title = columns[j]['title'];
       row[title] = rowData[j - 1];
     }
-    row["index"] = i - 1;
+    row['index'] = i - 1;
     dataSource.push(row);
   }
   return dataSource;
@@ -47,33 +47,3 @@ export default (data) => {
 
   return { columns, dataSource };
 };
-
-// const dataSource = [
-//   {
-//     key: "1",
-//     name: "Mike",
-//     age: 32,
-//     address: "10 Downing Street",
-//   },
-//   {
-//     key: "2",
-//     name: "John",
-//     age: 42,
-//     address: "10 Downing Street",
-//   },
-// ];
-
-// const col = [
-//   {
-//     title: "1",
-//     name: "Mike",
-//     age: 32,
-//     address: "10 Downing Street",
-//   },
-//   {
-//     title: "2",
-//     name: "John",
-//     age: 42,
-//     address: "10 Downing Street",
-//   },
-// ];

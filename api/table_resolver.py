@@ -2,6 +2,20 @@ from functools import reduce
 import pandas as pd
 from itertools import product
 
+sym = {
+    'T': '⊤',
+    'F': '⊥',
+    'N': '¬',
+    'K': '∧',
+    'A': '∨',
+    'C': '→',
+    'E': '≡',
+    'D': '|',
+    'P': '↓',
+    'S': '⊻',
+}
+sym_inv = {v: k for k, v in sym.items()}
+
 
 def K(p, q):
     '''Conjunction'''
@@ -95,15 +109,17 @@ def N(p):
         return 'T'
 
 
-rank = {'~': 3,
-        '&': 2,
-        'v': 2,
-        '>': 2,
-        '|': 2,
-        '!': 2,
-        '=': 2,
-        '+': 2,
-        '(': 1}
+rank = {
+    sym['N']: 3,
+    sym['K']: 2,
+    sym['A']: 2,
+    sym['C']: 2,
+    sym['E']: 2,
+    sym['D']: 2,
+    sym['P']: 2,
+    sym['S']: 2,
+    '(': 1,
+}
 
 connectives = ['K', 'A', 'C', 'E', 'D', 'P', 'S']
 connectives_N = connectives + ['N']
@@ -145,7 +161,7 @@ def evaluate(expression):
 def set_var(form):
     var = list(set(filter(lambda x: x not in connectives_N, form)))
     out = sorted(var)
-    return var
+    return out
 
 
 def gen_strings(var):
@@ -154,9 +170,7 @@ def gen_strings(var):
     return out
 
 
-def eval_form_on_val(valuation, formula):
-    var = set_var(formula)
-    val = valuation
+def eval_form_on_val(var, val, formula):
     new = formula
     for i in range(len(var)):
         new = [x.replace(var[i], val[i]) for x in new]
@@ -173,7 +187,7 @@ def truth_table(input_formula):
     out = []
     out = out + [var + [input_formula]]
     for string in strings:
-        out = out + [list(string) + eval_form_on_val(string, formula)]
+        out = out + [list(string) + eval_form_on_val(var, string, formula)]
     return out
 
 
@@ -190,7 +204,7 @@ def revpolish(formula):
             out.append(token)
         if token == '(':
             stack.append(token)
-        if token in ['>', '&', 'v', '|', '=', '~', '!', '+']:
+        elif token in rank:
             if stack == [] or rank[token] > rank[stack[-1]]:  # > или >= ???
                 stack.append(token)
             else:
@@ -215,19 +229,93 @@ def revpolish(formula):
         out.append(stack.pop())
 
     def replace(lst):
-        new = [x.replace('&', 'K') for x in lst]
-        new = [x.replace('v', 'A') for x in new]
-        new = [x.replace('~', 'N') for x in new]
-        new = [x.replace('>', 'C') for x in new]
-        new = [x.replace('=', 'E') for x in new]
-        new = [x.replace('|', 'D') for x in new]
-        new = [x.replace('!', 'P') for x in new]
-        new = [x.replace('+', 'S') for x in new]
+        new = list(map(lambda x: sym_inv[x] if x in sym_inv else x, lst))
         return new
 
     out = replace(out)
     out = ''.join(out)
     return(out)
+
+
+arity = {
+    sym['N']: 1,
+    sym['K']: 2,
+    sym['A']: 2,
+    sym['C']: 2,
+    sym['E']: 2,
+    sym['D']: 2,
+    sym['P']: 2,
+    sym['S']: 2,
+}
+
+
+def revpolish_r(formula):
+    end = len(formula)
+    out = []
+
+    # TERM ::= LETTER | UNARY_OP TERM | ( EXPRESSION )
+    def term(pos):
+        if pos == end:
+            raise Exception('expected term at '+str(pos))
+        token = formula[pos]
+        if token in letters:
+            return pos+1, token, token
+        elif token in arity and arity[token] == 1:
+            pos, term_rpn, term_f = term(pos+1)
+            rpn = term_rpn + sym_inv[token]
+            f = token + term_f
+            out.append([rpn, f])
+            return pos, rpn, f
+        elif token == '(':
+            pos, rpn, f = expression(pos+1)
+            if pos == end or formula[pos] != ')':
+                raise Exception('expected ) at '+str(pos))
+            return pos+1, rpn, f
+        else:
+            raise Exception('expected term at '+str(pos))
+
+    # EXPRESSION ::= TERM | EXPRESSION BINARY_OP TERM
+    def expression(pos):
+        pos, rpn, f = term(pos)
+        while pos != end:
+            token = formula[pos]
+            if token not in arity or arity[token] != 2:
+                break
+            pos, term_rpn, term_f = term(pos+1)
+            rpn += term_rpn + sym_inv[token]
+            f = f + token + term_f
+            out.append([rpn, f])
+            f = '(' + f + ')'
+        return pos, rpn, f
+
+    pos, rpn, f = expression(0)
+    if pos != end:
+        raise Exception('expected end of expression at '+str(pos))
+
+    if len(out) == 0:
+        out = [rpn, f]
+
+    new = []
+    seen = set()
+    for pair in out:
+        if pair[0] not in seen:
+            seen.add(pair[0])
+            new.append(pair)
+
+    return new
+
+
+def truth_table2(input_formula):
+    '''Truth Table for Formula '''
+    subformulas = revpolish_r(input_formula)
+    var = set_var(subformulas[-1][0])
+    strings = gen_strings(var)
+    out = []
+    out.append(var + [x[1] for x in subformulas])
+    for string in strings:
+        out.append(
+            list(string) + [eval_form_on_val(var, string, x[0])[0] for x in subformulas])
+    return out
 
 
 def replace_TF(var1, var2, string):
@@ -244,24 +332,10 @@ def replace_TF_table(x, y, tab):
     return new_table
 
 
-def replace_sym(f):
-    new_str = [x.replace('~', '¬') for x in f]
-    new_str = [x.replace('&', '∧') for x in new_str]
-    new_str = [x.replace('v', '∨') for x in new_str]
-    new_str = [x.replace('>', '→') for x in new_str]
-    new_str = [x.replace('=', '≡') for x in new_str]
-    new_str = [x.replace('|', '|') for x in new_str]
-    new_str = [x.replace('!', '↓') for x in new_str]
-    new_str = [x.replace('+', '⊻') for x in new_str]
-    new_str = ''.join(new_str)
-    return new_str
-
-
 def print_truth_table(formula, x='T', y='F'):
-    table = truth_table(formula)
+    table = truth_table2(formula)
     table = replace_TF_table(x, y, table)
-    form_tr = replace_sym(formula)
-    table[0][-1] = form_tr
+#    return table
     df = pd.DataFrame(table[1:], columns=table[0])
     df = df.style.set_properties(**{'text-align': 'center'})
     return df
@@ -310,13 +384,7 @@ def truth_table_for_list(list_of_formulas):
 def print_truth_table_for_list(lst, x='T', y='F'):
     table = truth_table_for_list(lst)
     table = replace_TF_table(x, y, table)
-    table[0] = list(map(replace_sym, table[0]))
-
     return table
-
-#     df = pd.DataFrame(table[1:], columns=table[0])  # вы
-#     df = df.style.set_properties(**{'text-align': 'center'})
-#     return df
 
 
 def print_truth_table_(formula, x='T', y='F'):
@@ -326,7 +394,6 @@ def print_truth_table_(formula, x='T', y='F'):
 def print_truth_table_html(formula, x='T', y='F'):
     table = truth_table_for_list([formula])
     table = replace_TF_table(x, y, table)
-    table[0] = list(map(replace_sym, table[0]))
     df = pd.DataFrame(table[1:], columns=table[0])  # вы
     df = df.to_html()
     return df
