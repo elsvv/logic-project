@@ -121,6 +121,7 @@ rank = {
     '(': 1,
 }
 
+
 connectives = ['K', 'A', 'C', 'E', 'D', 'P', 'S']
 connectives_N = connectives + ['N']
 
