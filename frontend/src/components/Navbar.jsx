@@ -6,8 +6,8 @@ import logo from '../../static/images/llfp-logo.png';
 
 const navLinks = [
   { to: '/truth-table', label: 'Truth Tables' },
-  // { to: "/modal-resolver", label: "Modal Logic Resolver" },
-  // { to: "/about", label: "About" },
+  { to: '/phil-map', label: 'Philosophy map' },
+  { to: '/about', label: 'About' },
 ];
 
 const { Header } = Layout;

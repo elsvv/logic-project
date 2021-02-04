@@ -1,34 +1,29 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
-import { Layout } from "antd";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Layout } from 'antd';
 
 const { Content } = Layout;
 
-import "./App.css";
+import './App.css';
 
-import TruthTablePage from "./pages/TruthTablePage";
-import Navbar from "./components/Navbar";
-// import AboutPage from "./pages/AboutPage";
-import FooterLayout from "./components/FooterLayout";
-import ModalResolverPage from "./pages/ModalResolverPage";
+import TruthTablePage from './pages/TruthTablePage';
+import PhilMapPage from './pages/PhilMapPage';
+import Navbar from './components/Navbar';
+import AboutPage from './pages/AboutPage';
+import FooterLayout from './components/FooterLayout';
 
 const App = () => {
   return (
     <Router>
-      <Layout className="site-layout">
+      <Layout className='site-layout'>
         <Navbar />
-        <Content className="content-layout">
+        <Content className='content-layout'>
           <Switch>
-            <Route path="/truth-table/:preform" component={TruthTablePage} />
-            <Route path="/truth-table" exact component={TruthTablePage} />
-            <Route path="/modal-resolver" exact component={ModalResolverPage} />
-            {/* <Route path="/about" component={AboutPage} /> */}
-            <Redirect to="/truth-table" />
+            <Route path='/truth-table/:preform' component={TruthTablePage} />
+            <Route path='/truth-table' exact component={TruthTablePage} />
+            <Route path='/phil-map' exact component={PhilMapPage} />
+            <Route path='/about' component={AboutPage} />
+            <Redirect to='/truth-table' />
           </Switch>
         </Content>
         <FooterLayout />

@@ -1,0 +1,44 @@
+.button {
+  height: 80px;
+  border: none;
+  box-shadow: 0 -2px 0 #000;
+  line-height: 80px;
+  text-align: center;
+  color: #007296;
+  font-size: 20px;
+  font-weight: 300;
+
+  cursor: alias;
+  transition: border-radius 0.2s ease-in;
+
+  &:hover {
+    // background: radial-gradient(
+    //   43.31% 50% at 50% 50%,
+    //   #2d8dff 32.29%,
+    //   rgba(255, 255, 255, 0) 100%
+    // );
+    // border: 2px solid #000;
+    // box-shadow: none;
+    box-shadow: inset 5px 5px 0px #000;
+    text-decoration-line: underline;
+    background-color: #fff;
+    // border-radius: 50%;
+    // transform: rotate(-180deg);
+  }
+}
+
+#disabled {
+  .button {
+    cursor: not-allowed;
+
+    &:hover {
+      color: #fff;
+      background-color: "#ccc" !important;
+      text-decoration-line: underline;
+      border: 2px solid #000000;
+      box-sizing: border-box;
+      // transform: rotate(-180deg);
+      filter: blur(4px);
+    }
+  }
+}
