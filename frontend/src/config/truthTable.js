@@ -10,3 +10,5 @@ export const OPERATORS = [
   { oper: '|', tex: '\\shortmid' },
   { oper: '↓', tex: '\\downarrow' },
 ];
+
+export const VALUE_FORMAT = ['1/0', 'T/F', '⊤/⊥'];

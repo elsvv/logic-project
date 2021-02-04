@@ -11,6 +11,7 @@ import message from '../utils/message';
 import encodeToURI from '../utils/encodeToURI';
 import generateTable from '../utils/generateTable';
 import isTableValid from '../utils/isTableValid';
+import { VALUE_FORMAT } from '../config';
 
 const LATEX_INPUT_TABEL = [{ tex: '\\wedge', oper: 'v' }];
 
@@ -23,6 +24,7 @@ const TruthTablePage = ({
   const [loading, setLoading] = useState(false);
   const [col, setCol] = useState(null);
   const [data, setData] = useState(null);
+  const [valueFormat, setValueFormat] = useState(VALUE_FORMAT[0]);
   const [formHistory, setFormHistory] = useState([]);
   const history = useHistory();
 
@@ -32,7 +34,7 @@ const TruthTablePage = ({
       handleClickFormula(decoded);
       history.push('/truth-table');
     }
-  }, []);
+  }, [preform]);
 
   const replaceLatexToSymbol = (input) => {
     let value = '';
@@ -46,9 +48,11 @@ const TruthTablePage = ({
     setFormula(replaceLatexToSymbol(input));
   };
 
-  const handleRequest = (formula) => {
+  const handleRequest = (formulasRaw) => {
     setLoading(true);
-    post('/api/formula/', { formula })
+    const formula = formulasRaw.split(',').map((f) => f.trim());
+
+    post('/api/formula/', { formula, valueFormat })
       .then((res) => {
         if (res.status === 500) return Promise.reject(res);
         return res;
@@ -59,12 +63,13 @@ const TruthTablePage = ({
         if (!isTableValid(table)) {
           return setData(false);
         }
-
-        const { columns, dataSource } = generateTable(table);
+        const formulasNum = formulasRaw.split(',').length;
+        const { columns, dataSource } = generateTable(table, formulasNum);
         setCol(columns);
         setData(dataSource);
 
-        if (!formHistory.includes(formula)) setFormHistory([formula, ...formHistory]);
+        if (!formHistory.includes(formulasRaw))
+          setFormHistory([formulasRaw, ...formHistory]);
       })
       .catch(() => {
         setData(false);
@@ -75,6 +80,10 @@ const TruthTablePage = ({
   const handleClickFormula = (selected) => {
     setFormula(selected);
     handleRequest(selected);
+  };
+
+  const handleChangeValueFormat = (e) => {
+    setValueFormat(e.target.value);
   };
 
   return (
@@ -101,6 +110,8 @@ const TruthTablePage = ({
         <Col span={9}>
           <TableInput
             formula={formula}
+            valueFormat={valueFormat}
+            handleChangeValueFormat={handleChangeValueFormat}
             setFormula={handleChangeInput}
             formHistory={formHistory}
             handleRequest={handleRequest}

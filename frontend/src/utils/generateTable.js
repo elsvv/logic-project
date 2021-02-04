@@ -4,7 +4,7 @@ const isTrue = (value) => {
   return value === 'T' || value == 1 || value === '⊤';
 };
 
-const generateColumns = (data) => {
+const generateColumns = (data, formulasNum) => {
   let columns = [
     {
       title: '',
@@ -19,9 +19,12 @@ const generateColumns = (data) => {
       sortDirections: ['descend', 'ascend'],
     })),
   ];
-  columns[columns.length - 1]['render'] = (value) => (
-    <span className={isTrue(value) ? 'true' : 'false'}>{value}</span>
-  );
+
+  for (let i = 1; i < formulasNum + 1; i++) {
+    columns[columns.length - i]['render'] = (value) => (
+      <span className={isTrue(value) ? 'true' : 'false'}>{value}</span>
+    );
+  }
   return columns;
 };
 
@@ -41,8 +44,8 @@ const generateDataSource = (data, columns) => {
   return dataSource;
 };
 
-export default (data) => {
-  const columns = generateColumns(data[0]);
+export default (data, formulasNum) => {
+  const columns = generateColumns(data[0], formulasNum);
   const dataSource = generateDataSource(data, columns);
 
   return { columns, dataSource };
