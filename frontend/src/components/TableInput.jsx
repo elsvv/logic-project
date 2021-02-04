@@ -1,12 +1,11 @@
-import React, { useRef } from "react";
-import { Button, Input, Card, Divider } from "antd";
+import React, { useRef } from 'react';
+import { Button, Input, Card, Divider, Radio } from 'antd';
 
-import TableInputConrols from "./TableInputConrols";
-import TableHistory from "./TableHistory";
+import TableInputConrols from './TableInputConrols';
+import TableHistory from './TableHistory';
+import { preformulas, VALUE_FORMAT } from '../config';
 
 const { Search } = Input;
-
-const preformulas = ["(p&(qvr))>~(s|t)", "p>q>p"];
 
 export default ({
   handleRequest,
@@ -14,6 +13,8 @@ export default ({
   formula,
   setFormula,
   loading,
+  valueFormat,
+  handleChangeValueFormat,
   handleClickFormula,
 }) => {
   const inputEl = useRef(null);
@@ -27,42 +28,44 @@ export default ({
   const handleClickControl = (operator) => {
     const { selectionStart } = inputEl.current.input.input;
     const newFormula =
-      formula.slice(0, selectionStart) +
-      operator +
-      formula.slice(selectionStart);
+      formula.slice(0, selectionStart) + operator + formula.slice(selectionStart);
 
     setFormula(newFormula);
     inputEl.current.focus();
   };
 
   return (
-    <Card className="generator__container">
+    <Card className='generator__container'>
       <TableInputConrols handleClick={handleClickControl} />
       <form onSubmit={handleSubmit}>
         <Search
-          placeholder="type your formula"
-          enterButton="Eval"
-          size="large"
+          placeholder='type your formula'
+          enterButton='Eval'
+          size='large'
           value={formula}
           ref={inputEl}
           onSearch={handleSubmit}
           loading={loading}
           onChange={(e) => setFormula(e.target.value)}
         />
+        <Radio.Group onChange={handleChangeValueFormat} value={valueFormat}>
+          {VALUE_FORMAT.map((value) => (
+            <Radio value={value} key={value}>
+              {value}
+            </Radio>
+          ))}
+        </Radio.Group>
       </form>
-      <div className="preformulas_wrap table-card">
-        <Divider orientation="left">Use examples:</Divider>
+      <div className='preformulas_wrap table-card'>
+        <Divider orientation='left'>Use examples:</Divider>
         {preformulas.map((f) => (
-          <Button key={f} onClick={() => handleClickFormula(f)} type="dashed">
+          <Button key={f} onClick={() => handleClickFormula(f)} type='dashed'>
             {f}
           </Button>
         ))}
       </div>
       {formHistory.length > 0 && (
-        <TableHistory
-          formHistory={formHistory}
-          handleClickFormula={handleClickFormula}
-        />
+        <TableHistory formHistory={formHistory} handleClickFormula={handleClickFormula} />
       )}
     </Card>
   );

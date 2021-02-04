@@ -1,48 +1,48 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: "./frontend/src/index.js",
+  entry: './frontend/src/index.js',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: "file-loader?name=/static/images/[name].[ext]",
+        loader: 'file-loader?name=/static/images/[name].[ext]',
       },
       {
         test: /\.(css|scss|sass)$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "/frontend/static/css/",
-            },
+            // options: {
+            //   publicPath: "/frontend/static/css/",
+            // },
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             // options: { sourceMap: true, importLoaders: 1 },
           },
-          { loader: "sass-loader" /* options: { sourceMap: true } */ },
+          { loader: 'sass-loader' /* options: { sourceMap: true } */ },
         ],
       },
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.js', '.jsx'],
   },
   output: {
-    path: __dirname + "/frontend/static/",
-    filename: "main.js",
+    path: __dirname + '/frontend/static/',
+    filename: 'main.js',
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "bundle.css",
+      filename: 'bundle.css',
     }),
   ],
 };

@@ -12,9 +12,11 @@ def eval_formula(request, *args, **kwargs):
     try:
         data = json.loads(request.body.decode())
         formula = data['formula']
+        valueFormat = data['valueFormat'].split('/')
+        truthValue = valueFormat[0]
+        falseValue = valueFormat[1]
 
-        # table = print_truth_table_html(formula)
-        table = print_truth_table_for_list([formula], '1', '0')
+        table = print_truth_table_for_list(formula, truthValue, falseValue)
 
         data = {
             "table": table

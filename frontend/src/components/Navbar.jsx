@@ -31,20 +31,9 @@ const Navbar = ({}) => {
             <NavLink to={link.to}>{link.label}</NavLink>
           </Menu.Item>
         ))}
-        {/* <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item> */}
       </Menu>
-      {/* <a href="https://llfp.hse.ru/" target="blank">
-        <img className="logo" src={logo} />
-      </a>
-      <div className="links-wrap">
-        <NavLink to="/truth-table">Truth Tables</NavLink>
-        <NavLink to="/about">About</NavLink>
-      </div> */}
     </Header>
   );
 };
-// </header>
 
 export default withRouter(Navbar);

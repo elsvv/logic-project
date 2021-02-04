@@ -1,15 +1,12 @@
 export default (myField, myValue, setter) => {
-  console.log("INSERTING");
   //IE support
   if (document.selection) {
     myField.focus();
     sel = document.selection.createRange();
     sel.text = myValue;
-
-    console.log("myField.value", myField.value);
   }
   // Microsoft Edge
-  else if (window.navigator.userAgent.indexOf("Edge") > -1) {
+  else if (window.navigator.userAgent.indexOf('Edge') > -1) {
     var startPos = myField.selectionStart;
     var endPos = myField.selectionEnd;
 
@@ -23,7 +20,7 @@ export default (myField, myValue, setter) => {
     myField.setSelectionRange(pos, pos);
   }
   //MOZILLA and others
-  else if (myField.selectionStart || myField.selectionStart == "0") {
+  else if (myField.selectionStart || myField.selectionStart == '0') {
     var startPos = myField.selectionStart;
     var endPos = myField.selectionEnd;
     myField.value =

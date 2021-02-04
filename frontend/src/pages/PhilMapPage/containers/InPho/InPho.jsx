@@ -223,7 +223,6 @@ class InPho extends Component {
         }
 
         const selectedLabel = selectedData.label;
-        console.log('selectedData:', selectedData);
         const nodes = [],
           edges = [];
 
