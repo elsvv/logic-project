@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Divider, Button, Tooltip } from 'antd';
-import { ShareAltOutlined } from '@ant-design/icons';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Row, Col, Divider, Button, Tooltip } from "antd";
+import { ShareAltOutlined } from "@ant-design/icons";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useHistory } from "react-router-dom";
 
-import TableInput from '../components/TableInput';
-import TruthTable from '../components/TruthTable';
-import { post } from 'axios';
-import message from '../utils/message';
-import encodeToURI from '../utils/encodeToURI';
-import generateTable from '../utils/generateTable';
-import isTableValid from '../utils/isTableValid';
-import { VALUE_FORMAT } from '../config';
-
-const LATEX_INPUT_TABEL = [{ tex: '\\wedge', oper: 'v' }];
+import TableInput from "../components/TableInput";
+import TruthTable from "../components/TruthTable";
+import { post } from "axios";
+import message from "../utils/message";
+import encodeToURI from "../utils/encodeToURI";
+import generateTable from "../utils/generateTable";
+import isTableValid from "../utils/isTableValid";
+import { VALUE_FORMAT } from "../config";
+import replaceTableInput from "../utils/replaceTableInput";
 
 const TruthTablePage = ({
   match: {
     params: { preform },
   },
 }) => {
-  const [formula, setFormula] = useState('');
+  const [formula, setFormula] = useState("");
   const [loading, setLoading] = useState(false);
   const [col, setCol] = useState(null);
   const [data, setData] = useState(null);
@@ -32,27 +31,20 @@ const TruthTablePage = ({
     if (preform) {
       const decoded = decodeURIComponent(preform);
       handleClickFormula(decoded);
-      history.push('/truth-table');
+      history.push("/truth-table");
     }
   }, [preform]);
 
-  const replaceLatexToSymbol = (input) => {
-    let value = '';
-    LATEX_INPUT_TABEL.forEach((latexObj) => {
-      value = input.replace(latexObj.tex, latexObj.oper);
-    });
-    return value;
-  };
-
   const handleChangeInput = (input) => {
-    setFormula(replaceLatexToSymbol(input));
+    const formated = replaceTableInput(input);
+    setFormula(formated);
   };
 
   const handleRequest = (formulasRaw) => {
     setLoading(true);
-    const formula = formulasRaw.split(',').map((f) => f.trim());
+    const formula = formulasRaw.split(",").map((f) => f.trim());
 
-    post('/api/formula/', { formula, valueFormat })
+    post("/api/formula/", { formula, valueFormat })
       .then((res) => {
         if (res.status === 500) return Promise.reject(res);
         return res;
@@ -63,7 +55,7 @@ const TruthTablePage = ({
         if (!isTableValid(table)) {
           return setData(false);
         }
-        const formulasNum = formulasRaw.split(',').length;
+        const formulasNum = formulasRaw.split(",").length;
         const { columns, dataSource } = generateTable(table, formulasNum);
         setCol(columns);
         setData(dataSource);
@@ -87,16 +79,16 @@ const TruthTablePage = ({
   };
 
   return (
-    <div className='truth-table-page'>
-      <div className='page__header'>
-        <h1 className='page__title'>Truth tables</h1>
+    <div className="truth-table-page">
+      <div className="page__header">
+        <h1 className="page__title">Truth tables</h1>
         <CopyToClipboard
-          text={window.location.origin + '/truth-table/' + encodeToURI(formula)}
+          text={window.location.origin + "/truth-table/" + encodeToURI(formula)}
         >
-          <Tooltip title='Share link to your table'>
+          <Tooltip title="Share link to your table">
             <Button
-              shape='circle'
-              onClick={() => message('Link to the table copied!')}
+              shape="circle"
+              onClick={() => message("Link to the table copied!")}
               // className="with-icon-center"
               disabled={!data}
             >
