@@ -1,0 +1,14 @@
+.navbar__container {
+  background-color: #fff;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: -1px -17px 20px 0px #000;
+  align-items: center !important;
+
+  .logo {
+    width: 50px;
+    display: block;
+    padding: 7px;
+  }
+}

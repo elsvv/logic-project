@@ -1,0 +1,50 @@
+.controls-container {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 6px;
+  border-bottom: 2px solid #000;
+
+  .control {
+    background-size: cover;
+    width: 28px;
+    height: 28px;
+
+    &:hover {
+      border-radius: 10%;
+      border: 2px solid black;
+    }
+
+    &.back {
+      background-image: url(../../../../assets/keyboard_backspace-24px.svg);
+      cursor: pointer;
+    }
+
+    &.hide {
+      background-image: url(../../../../assets/close.svg);
+      cursor: alias;
+    }
+
+    &.mini {
+      background-image: url(../../../../assets/maximize.svg);
+      cursor: alias;
+    }
+
+    &.max {
+      background-image: url(../../../../assets/web.svg);
+      cursor: alias;
+    }
+
+    &.about {
+      background-image: url(../../../../assets/info.svg);
+      cursor: help;
+    }
+
+    &.colors {
+      background-image: url(../../../../assets/colors.svg);
+      cursor: help;
+    }
+  }
+}
