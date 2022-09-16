@@ -1,6 +1,6 @@
 __pycache__/
 /**/__pycache__/*
-/**/*.py[cod]
+*.py[cod]
 /server/**/__pycache__/*
 /client/node_modules
 /client/build
