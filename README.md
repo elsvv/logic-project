@@ -24,6 +24,7 @@ flask --app server/app.py run
 To start client app localy:
 
 ```sh
+cd client
 npm install
 npm run start
 ```
