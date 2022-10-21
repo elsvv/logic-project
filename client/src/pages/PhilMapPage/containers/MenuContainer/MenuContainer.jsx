@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
-import './MenuContainer.scss';
+import React, { Component } from "react";
+import "./MenuContainer.scss";
 
-import Entry from '../../components/Entry/Entry';
-import PhilPapers from '../PhilPapers/PhilPapers';
-import InPho from '../InPho/InPho';
+import Entry from "../../components/Entry/Entry";
+import PhilPapers from "../PhilPapers/PhilPapers";
+import InPho from "../InPho/InPho";
+import { getInPhoEntity, getPP } from "../../utils";
 
 class MenuContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: 'entry',
+      display: "entry",
       draggie: false,
+      ppData: null,
+      inphoData: null,
     };
   }
 
@@ -21,29 +24,27 @@ class MenuContainer extends Component {
   toggleDraggie = () => {
     const { draggie } = this.state;
     this.setState({ draggie: !draggie });
-    console.log('toggleDraggie', this.state.draggie);
+    console.log("toggleDraggie", this.state.draggie);
   };
 
   render() {
     const { display, draggie } = this.state;
+    const { ppData, inphoData } = this.props;
 
     const switcher = draggie
-      ? { name: 'max', handler: this.toggleDraggie, arg: 'draggie' }
-      : { name: 'mini', handler: this.toggleDraggie, arg: 'draggie' };
+      ? { name: "max", handler: this.toggleDraggie, arg: "draggie" }
+      : { name: "mini", handler: this.toggleDraggie, arg: "draggie" };
     const controls = [
-      { name: 'back', handler: this.changeDisplay, arg: 'entry' },
+      { name: "back", handler: this.changeDisplay, arg: "entry" },
       switcher,
     ];
 
-    const MenuContainerRender = (
-      <div className='MenuContainer'>
-        {display === 'entry' ? (
-          <Entry
-            changeDisplay={this.changeDisplay}
-            toggleLoader={this.props.toggleLoader}
-          />
+    return (
+      <div className="MenuContainer">
+        {display === "entry" ? (
+          <Entry changeDisplay={this.changeDisplay} />
         ) : null}
-        {display === 'philpapers' ? (
+        {display === "philpapers" && ppData ? (
           <PhilPapers
             doubleClicked={this.props.doubleClicked}
             controls={controls}
@@ -53,10 +54,10 @@ class MenuContainer extends Component {
             handleSelectedUp={this.props.handleSelectedUp}
             changeDisplay={this.changeDisplay}
             handleUp={this.props.handleUp}
-            toggleLoader={this.props.toggleLoader}
+            {...ppData}
           />
         ) : null}
-        {display === 'inpho' ? (
+        {display === "inpho" && inphoData ? (
           <InPho
             doubleClicked={this.props.doubleClicked}
             controls={controls}
@@ -66,12 +67,11 @@ class MenuContainer extends Component {
             handleSelectedUp={this.props.handleSelectedUp}
             changeDisplay={this.changeDisplay}
             handleUp={this.props.handleUp}
-            toggleLoader={this.props.toggleLoader}
+            {...inphoData}
           />
         ) : null}
       </div>
     );
-    return MenuContainerRender;
   }
 }
 

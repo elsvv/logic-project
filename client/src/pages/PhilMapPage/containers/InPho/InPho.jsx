@@ -21,50 +21,13 @@ class InPho extends Component {
       parsedEdges: null,
       nodes: null,
       edges: null,
-      isWaiting: true,
+      isWaiting: false,
       isFiltered: false,
       toFind: "",
       preview: null,
-      ideas: [],
-      thinkers: [],
-      // other: [],
       selectedData: null,
       toRender: null,
     };
-  }
-
-  handleGetEntity = () => {
-    axios
-      .get(`${url}entity.json`)
-      .then((res) => {
-        const data = res.data.responseData.results,
-          ideas = [],
-          thinkers = [];
-
-        data.forEach((el) => {
-          if (el.type === "idea") {
-            ideas.push(el);
-          }
-          if (el.type === "thinker") {
-            thinkers.push(el);
-          }
-        });
-
-        this.setState({
-          ideas,
-          thinkers,
-          // other,
-          isWaiting: false,
-        });
-        this.props.toggleLoader();
-      })
-      .catch((error) => {
-        console.log("Catch error:", error);
-      });
-  };
-
-  componentDidMount() {
-    this.handleGetEntity();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -81,7 +44,7 @@ class InPho extends Component {
     this.setState({ toFind: search });
 
     if (search.length >= 3) {
-      let previewIdeas = this.state.ideas.filter((node) =>
+      let previewIdeas = this.props.ideas.filter((node) =>
         node.label.toLowerCase().includes(search)
       );
       let previewIds = previewIdeas.map((el) => el.ID);
@@ -90,7 +53,7 @@ class InPho extends Component {
         []
       );
 
-      let previewThinkers = this.state.thinkers.filter((node) =>
+      let previewThinkers = this.props.thinkers.filter((node) =>
         node.label.toLowerCase().includes(search)
       );
       previewIds = [...previewIds, ...previewThinkers.map((el) => el.ID)];
@@ -114,8 +77,6 @@ class InPho extends Component {
     if (!isFiltered || previewIds.length === 0) {
       return false;
     }
-
-    this.props.toggleLoader();
 
     let toRender = {};
     previewIds.forEach((id) => {
@@ -164,7 +125,8 @@ class InPho extends Component {
   };
 
   handleCollectAll = () => {
-    const { previewIds, toRender, ideas, thinkers } = this.state;
+    const { previewIds, toRender } = this.state;
+    const { ideas, thinkers } = this.props;
     let nodesIds = [],
       nodes = [],
       edges = [];
@@ -202,7 +164,6 @@ class InPho extends Component {
 
     this.setState({ nodes, edges });
     this.passUp(nodes, edges);
-    this.props.toggleLoader();
   };
 
   handleOption = (event) => {
@@ -224,7 +185,7 @@ class InPho extends Component {
         const nodes = [],
           edges = [];
 
-        const { ideas, thinkers } = this.state;
+        const { ideas, thinkers } = this.props;
 
         // THINKER PARSER
         if (selectedData.type === "thinker") {

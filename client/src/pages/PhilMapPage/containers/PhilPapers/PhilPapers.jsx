@@ -10,79 +10,13 @@ class PhilPapers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parsedNodes: null,
-      parsedEdges: null,
       nodes: null,
       edges: null,
-      isWaiting: true,
+      isWaiting: false,
       isFiltered: false,
       toFind: "",
       preview: null,
     };
-  }
-
-  handleGetPp = () => {
-    const key = "65bYvgX7lvNpObRF";
-    const id = "784298";
-    let proxyUrl = "https://cors-anywhere.herokuapp.com/",
-      targetUrl = `https://philpapers.org/philpapers/raw/categories.json?apiId=${id}&apiKey=${key}`;
-    fetch(proxyUrl + targetUrl)
-      .then((blob) => blob.json())
-      .then((data) => {
-        this.parseToVis(data);
-      })
-      .catch((er) => {
-        console.log("Catch error: ", er);
-      });
-  };
-
-  parseToVis = (data) => {
-    let parsedNodes = [],
-      parsedEdges = [];
-
-    let mainContainer = [];
-
-    data.forEach((theme, idx) => {
-      let name = theme[0],
-        id = parseInt(theme[1]),
-        parents = theme[2].split(",").map((el) => parseInt(el)),
-        primeParent = parseInt(theme[3]);
-      let mainColor = false,
-        mainSize = false;
-
-      if (primeParent === 1) {
-        mainContainer.push(theme);
-        // mainColor = "#ccc";
-        mainSize = 50;
-      }
-
-      parsedNodes.push({
-        id: id,
-        title: "none",
-        label: name,
-        size: mainSize || 18,
-        color: mainColor || "#fff",
-      });
-
-      parents.forEach((par) => {
-        parsedEdges.push({
-          from: id,
-          to: par === 1 ? undefined : par,
-          primeParent: primeParent,
-        });
-      });
-    });
-
-    this.setState({
-      parsedNodes,
-      parsedEdges,
-      isWaiting: false,
-    });
-    this.props.toggleLoader();
-  };
-
-  componentDidMount() {
-    this.handleGetPp();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -103,7 +37,7 @@ class PhilPapers extends Component {
     this.setState({ toFind: search });
 
     if (search.length >= 3) {
-      let preview = this.state.parsedNodes
+      let preview = this.props.parsedNodes
         .filter((node) => node.label.toLowerCase().includes(search))
         .reduce((ac, el) => [...ac, { label: el.label, id: el.id }], []);
       return this.setState({ preview: preview, isFiltered: true });
@@ -115,8 +49,9 @@ class PhilPapers extends Component {
     if (event.preventDefault instanceof Function) {
       event.preventDefault();
     }
-    const { parsedNodes, toFind, parsedEdges, isFiltered, preview } =
-      this.state;
+    const { toFind, isFiltered, preview } = this.state;
+
+    const { parsedNodes, parsedEdges } = this.props;
 
     if (!isFiltered || preview.length === 0) {
       return false;
@@ -161,7 +96,7 @@ class PhilPapers extends Component {
   };
 
   handleRender = (selectedId) => {
-    const { parsedEdges, parsedNodes } = this.state;
+    const { parsedEdges, parsedNodes } = this.props;
     const selectedNode = parsedNodes.find((node) => node.id === selectedId);
 
     let relatedIds = [];
@@ -196,8 +131,8 @@ class PhilPapers extends Component {
 
   render() {
     const { isWaiting, isFiltered } = this.state;
-    const nodes = this.state.nodes || this.state.parsedNodes;
-    const edges = this.state.edges || this.state.parsedEdges;
+    const nodes = this.state.nodes || this.props.parsedNodes;
+    const edges = this.state.edges || this.props.parsedEdges;
     const buttonHandler = isFiltered
       ? this.handleSubmit
       : () => this.passUp(nodes, edges);

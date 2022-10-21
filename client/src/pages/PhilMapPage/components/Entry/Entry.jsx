@@ -5,18 +5,12 @@ import Button from "../Button/Button";
 import Controls from "../Controls/Controls";
 import TextComponent from "../TextComponent/TextComponent";
 
-const Entry = props => {
+const Entry = (props) => {
   let [about, setAbout] = useState(false);
 
   const toggleAbout = () => {
     setAbout(!about);
   };
-
-  useEffect(() => {
-    return () => {
-      props.toggleLoader();
-    };
-  }, []);
 
   const controls = [{ name: "about", handler: toggleAbout, arg: "about" }];
   const description = (

@@ -7,6 +7,7 @@ import MenuContainer from "./containers/MenuContainer/MenuContainer";
 import InfoContainer from "./containers/InfoContainer/InfoContainer";
 
 import Loader from "./components/Loader/Loader";
+import { getPP, getInPhoEntity } from "./utils";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -15,20 +16,23 @@ class App extends React.Component {
       edges: [],
       graph: null,
       graphRender: false,
-      loading: false,
+      loading: true,
       selectedData: null,
       displayInfo: false,
       doubleClicked: null,
+      ppData: null,
+      inphoData: null,
     };
+  }
+
+  componentDidMount() {
+    Promise.all([getPP(), getInPhoEntity()]).then(([ppData, inphoData]) =>
+      this.setState({ ppData, inphoData, loading: false })
+    );
   }
 
   handleUp = (nodes, edges) => {
     this.setState({ nodes, edges, graphRender: true });
-  };
-
-  toggleLoader = () => {
-    const { loading } = this.state;
-    this.setState({ loading: !loading });
   };
 
   handleSelectedUp = (selectedData) => {
@@ -44,8 +48,15 @@ class App extends React.Component {
   };
 
   render() {
-    const { graphRender, loading, selectedData, displayInfo, doubleClicked } =
-      this.state;
+    const {
+      graphRender,
+      loading,
+      selectedData,
+      displayInfo,
+      doubleClicked,
+      ppData,
+      inphoData,
+    } = this.state;
 
     return (
       <div className="App">
@@ -53,7 +64,6 @@ class App extends React.Component {
           <InfoContainer
             selectedData={selectedData}
             infoToggle={this.infoToggle}
-            toggleLoader={this.toggleLoader}
             handleUp={this.handleUp}
           />
         ) : null}
@@ -67,13 +77,15 @@ class App extends React.Component {
 
         {loading ? <Loader /> : null}
 
-        <MenuContainer
-          doubleClicked={doubleClicked}
-          infoToggle={this.infoToggle}
-          handleSelectedUp={this.handleSelectedUp}
-          toggleLoader={this.toggleLoader}
-          handleUp={this.handleUp}
-        />
+        {!loading && (
+          <MenuContainer
+            doubleClicked={doubleClicked}
+            infoToggle={this.infoToggle}
+            handleSelectedUp={this.handleSelectedUp}
+            handleUp={this.handleUp}
+            {...{ ppData, inphoData }}
+          />
+        )}
       </div>
     );
   }
