@@ -10,7 +10,7 @@ const navLinks = [
   { to: "/truth-table", label: "Truth Tables" },
   { to: "/phil-map", label: "Philosophy map" },
   { to: "/about", label: "About" },
-  { to: "/test", label: "Test page!" },
+  { to: "/othermodels", label: "Other Models" },
 ];
 
 const { Header } = Layout;
