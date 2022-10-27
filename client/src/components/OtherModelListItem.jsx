@@ -9,22 +9,22 @@ const OtherModelListItem = ({ title, img, text, link }) => {
 
   return (
     <li>
-      <article class="main_article">
-        <p onClick={handleClick} class="main_article-title">
+      <article className="main_article">
+        <p onClick={handleClick} className="main_article-title">
           {title}
         </p>
         {shown && (
-          <div class="main_article-block" id="philosophers-web">
-            <div class="main_article-block-text">
-              <p class="main_article-p">{text}</p>
-              <p class="main_article-link">
+          <div className="main_article-block" id="philosophers-web">
+            <div className="main_article-block-text">
+              <div className="main_article-p">{text}</div>
+              <p className="main_article-link">
                 <a href={link} target="_blank">
                   Ссылка
                 </a>
               </p>
             </div>
             <a href={link} target="_blank">
-              <img src={img} alt="Philosopher's Web" class="main_article-img" />
+              <img src={img} alt="Philosopher's Web" className="main_article-img" />
             </a>
           </div>
         )}

@@ -9,8 +9,9 @@ import { withRouter } from "../utils/withRouter";
 const navLinks = [
   { to: "/truth-table", label: "Truth Tables" },
   { to: "/phil-map", label: "Philosophy map" },
-  { to: "/about", label: "About" },
+  { to: "/ourmodels", label: "Our Models"},
   { to: "/othermodels", label: "Other Models" },
+  { to: "/about", label: "About" },
 ];
 
 const { Header } = Layout;
