@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.1d46a3ef.css",
-    "main.js": "/static/js/main.fb8d5442.js",
+    "main.js": "/static/js/main.b6d4d25c.js",
     "static/media/history-of-philosophy.png": "/static/media/history-of-philosophy.ca12928f990c199f5260.png",
     "static/media/elvis.png": "/static/media/elvis.fcb895c428346dd853df.png",
     "static/media/truth-table-app.png": "/static/media/truth-table-app.465034d3e4d1b520e07c.png",
@@ -33,10 +33,10 @@
     "static/media/keyboard_backspace-24px.svg": "/static/media/keyboard_backspace-24px.8c3d7628c41878532f0c.svg",
     "static/media/maximize.svg": "/static/media/maximize.25ddf1f86175576168ad.svg",
     "main.1d46a3ef.css.map": "/static/css/main.1d46a3ef.css.map",
-    "main.fb8d5442.js.map": "/static/js/main.fb8d5442.js.map"
+    "main.b6d4d25c.js.map": "/static/js/main.b6d4d25c.js.map"
   },
   "entrypoints": [
     "static/css/main.1d46a3ef.css",
-    "static/js/main.fb8d5442.js"
+    "static/js/main.b6d4d25c.js"
   ]
 }

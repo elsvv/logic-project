@@ -19,8 +19,7 @@ const App = () => {
         <Navbar />
         <Layout.Content className="content-layout">
           <Routes>
-            <Route path="/truth-table/:preform" element={<TruthTablePage />} />
-            <Route path="/truth-table" exact element={<TruthTablePage />} />
+            <Route path="/truth-table" element={<TruthTablePage />} />
             <Route path="/phil-map" exact element={<PhilMapPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/ourmodels" element={<OurModelsPage />} />

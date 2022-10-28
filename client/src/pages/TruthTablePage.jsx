@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Divider, Button, Tooltip } from "antd";
 import { ShareAltOutlined } from "@ant-design/icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { post } from "axios";
 
 import TableInput from "../components/TableInput";
@@ -16,7 +16,7 @@ import { BASE_URL, VALUE_FORMAT } from "../config";
 const LATEX_INPUT_TABEL = [{ tex: "\\wedge", oper: "v" }];
 
 const TruthTablePage = () => {
-  const { preform } = useParams();
+  const [search, setSearch] = useSearchParams();
   const [formula, setFormula] = useState("");
   const [loading, setLoading] = useState(false);
   const [col, setCol] = useState(null);
@@ -26,12 +26,14 @@ const TruthTablePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const preform = search.get("preform");
+
     if (preform) {
       const decoded = decodeURIComponent(preform);
       handleClickFormula(decoded);
       navigate("/truth-table");
     }
-  }, [preform]);
+  }, [search]);
 
   const replaceLatexToSymbol = (input) => {
     let value = "";
@@ -88,7 +90,11 @@ const TruthTablePage = () => {
       <div className="page__header">
         <h1 className="page__title">Truth tables</h1>
         <CopyToClipboard
-          text={window.location.origin + "/truth-table/" + encodeToURI(formula)}
+          text={
+            window.location.origin +
+            "/truth-table?preform=" +
+            encodeToURI(formula)
+          }
         >
           <Tooltip title="Share link to your table">
             <Button

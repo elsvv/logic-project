@@ -18,7 +18,7 @@ pip install -r requirements.txt -->
 To run server app:
 
 ```sh
-flask --app server/app.py run
+flask --debug --app main.py run
 ```
 
 To start client app localy:
