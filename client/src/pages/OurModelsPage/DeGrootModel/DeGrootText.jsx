@@ -10,7 +10,7 @@ const DeGrootText = () => {
       
       <p>Мнение <TexInline formula={"p_i(t) \in [0,1]"} /> показывает степень убеждения в чем-либо агента <TexInline formula={"i"} /> в момент <TexInline formula={"t"} />. Соответственно, <TexInline formula={"p_i(0)"} /> – это изначальное мнение агента <TexInline formula={"i"} />. Для <TexInline formula={"n"} /> агентов из группы задается вектор из мнений каждого участника <TexInline formula={"p(t) = (p_1(t), …, p_n(t))"} />.</p>
 
-      <p>Матрица влияния $T$ размера $n \times n$ (n = количество участников группы) показывает степени доверия агентов друг к другу: коэффициенты матрицы определяются на отрезке от 0 (минимальная степень доверия) до 1 (максимальная степень доверия). Сумма всех коэффициентов в каждой строке матрицы влияний должна быть равна 1. Строки и столбцы матрицы соответствуют агентам, например, коэффициент из i-й строки и j-го столбца – степень доверия агента i к агенту j.</p>
+      <p>Матрица влияния <TexInline formula={"T"} />размера <TexInline formula={"n \times n"} /> (n = количество участников группы) показывает степени доверия агентов друг к другу: коэффициенты матрицы определяются на отрезке от 0 (минимальная степень доверия) до 1 (максимальная степень доверия). Сумма всех коэффициентов в каждой строке матрицы влияний должна быть равна 1. Строки и столбцы матрицы соответствуют агентам, например, коэффициент из i-й строки и j-го столбца – степень доверия агента i к агенту j.</p>
 
       <p>Степени доверия агентов друг к другу не меняются в отличие от вектора мнений, который записывается как вектор-столбец и задается следующим образом:</p>
 
@@ -22,8 +22,8 @@ const DeGrootText = () => {
       <h2>Ссылки</h2>
       <ol>
         <li>Franke M., Rooij R. van. Strategies of Persuasion, Manipulation and Propaganda: Psychological and Social Aspects // Journal of Applied Non-Classical Logics. , 2015. С. 255–291.</li>
-        <li>Zhukov L. Network Analysis. Lecture 16. Social learning: https://www.youtube.com/watch?v=GrIToRd2TmI</li>
-        <li>Jackson M. O. Social and Economic Networks 6.2 Week 6: DeGroot Model https://www.youtube.com/watch?v=zcd1ckJ_GgQ</li>
+        <li>Zhukov L. <a href="https://www.youtube.com/watch?v=GrIToRd2TmI">Network Analysis. Lecture 16. Social learning</a></li>
+        <li>Jackson M. O. <a href="https://www.youtube.com/watch?v=zcd1ckJ_GgQ">Social and Economic Networks 6.2 Week 6: DeGroot Model</a></li>
       </ol>
       
       <h2>Как работает калькулятор</h2>

@@ -45,8 +45,8 @@ const SkyrmsText = () => {
       <p>Данная модель визуализирует делиберативную динамику игр 
       <MathJax.Provider>
           <MathJax.Node inline formula={"2 \times 2"} />
-      </MathJax.Provider>, описанную в работе Скёрмса (Skerms, 1990).</p>
-      <p>В таблице устанавливается выигрыш игроков (аналогично числам в матрице $2 \times 2$). </p>
+      </MathJax.Provider>, описанную в работе Скёрмса (Skyrms, 1990).</p>
+      <p>В таблице устанавливается выигрыш игроков.</p>
       <h3>Список литературы</h3>
       <ol>
         <li>Pacuit E. Dynamic Models of Rational Deliberation in Games // Journal of Applied Non-Classical Logics. 2015. P. 3–33.</li>

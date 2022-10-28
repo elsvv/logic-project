@@ -6,13 +6,13 @@ export const modelsData = [
   {
     title: "Динамика Скёрмса",
     text: <SkyrmsText />,
-    link: "https://dadaismee.github.io/skyrmsModel/",
+    link: "https://vlrshvchnk.github.io/skyrms-model/",
     // modelInterface: <SkyrmsModelInterface />
   },
   {
     title: "Модель де Гроота",
     text: <DeGrootText />,
-    link: ""
+    link: "https://vlrshvchnk.github.io/degroot-model/"
   },
   {
     title: "DEL → EL",
