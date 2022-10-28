@@ -1,1 +1,1 @@
-web: gunicorn logicproject.wsgi
+web: gunicorn main:app
