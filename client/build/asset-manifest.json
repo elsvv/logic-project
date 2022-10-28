@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1d46a3ef.css",
+    "main.js": "/static/js/main.f8ebad67.js",
+    "static/media/history-of-philosophy.png": "/static/media/history-of-philosophy.ca12928f990c199f5260.png",
+    "static/media/elvis.png": "/static/media/elvis.fcb895c428346dd853df.png",
+    "static/media/truth-table-app.png": "/static/media/truth-table-app.465034d3e4d1b520e07c.png",
+    "static/media/philosophers-web.png": "/static/media/philosophers-web.dbbc83c737629fa3e132.png",
+    "static/media/llfp-logo.png": "/static/media/llfp-logo.42dd949d3549606b4289.png",
+    "static/media/truth-table-gen.png": "/static/media/truth-table-gen.bd0c3b57ad85ba49d8cc.png",
+    "static/media/logic-calc.png": "/static/media/logic-calc.7b3dd0bc13e180b052e6.png",
+    "static/media/sep-red.png": "/static/media/sep-red.53fc44f19d09910e932d.png",
+    "static/media/zhekalkin.png": "/static/media/zhekalkin.6482c9f898dfa79724cb.png",
+    "static/media/sqema.png": "/static/media/sqema.d49bccd7c07470dc3792.png",
+    "static/media/modal-logic.png": "/static/media/modal-logic.497f29bf3fc392c267f9.png",
+    "static/media/boolean-truth-table.png": "/static/media/boolean-truth-table.50aa0e984c362251bd33.png",
+    "static/media/logic-calc-simple.png": "/static/media/logic-calc-simple.f268c9f1f5e0a0de817e.png",
+    "static/media/truth-table-tool.png": "/static/media/truth-table-tool.4a5fbec7b1ad831b7b9a.png",
+    "static/media/tree-calc.png": "/static/media/tree-calc.af65eb65caac8bb64a3a.png",
+    "static/media/wiki.png": "/static/media/wiki.f529e8f2b37110c0d545.png",
+    "static/media/deduction-prover.png": "/static/media/deduction-prover.3860f5eb4b0e99c26b42.png",
+    "static/media/prover.png": "/static/media/prover.8c612131c7b19476cbde.png",
+    "static/media/philosophy_of_mind.png": "/static/media/philosophy_of_mind.9bb61fb6787aa0db68d2.png",
+    "static/media/truth-table-2.png": "/static/media/truth-table-2.536024eec79fc4f6b5c6.png",
+    "static/media/s4-prover.png": "/static/media/s4-prover.5f383f8c5685576364cc.png",
+    "static/media/truth-table.png": "/static/media/truth-table.66fb9b3586b79074a126.png",
+    "index.html": "/index.html",
+    "static/media/colors.svg": "/static/media/colors.893abdc69a30025f55df.svg",
+    "static/media/search.svg": "/static/media/search.53b854125a84c5b398cee2ee964e3ecc.svg",
+    "static/media/info.svg": "/static/media/info.ea6f6a2b218056e86a67.svg",
+    "static/media/close.svg": "/static/media/close.c0708ad91d8e6c3282d5.svg",
+    "static/media/web.svg": "/static/media/web.7f5b06a169c61c19ec07.svg",
+    "static/media/keyboard_backspace-24px.svg": "/static/media/keyboard_backspace-24px.8c3d7628c41878532f0c.svg",
+    "static/media/maximize.svg": "/static/media/maximize.25ddf1f86175576168ad.svg",
+    "main.1d46a3ef.css.map": "/static/css/main.1d46a3ef.css.map",
+    "main.f8ebad67.js.map": "/static/js/main.f8ebad67.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1d46a3ef.css",
+    "static/js/main.f8ebad67.js"
+  ]
+}

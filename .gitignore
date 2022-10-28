@@ -3,5 +3,6 @@
 *.py[cod]
 /server/**/__pycache__/*
 /client/node_modules
-/client/build
+node_modules
+# /client/build
 /venv
