@@ -6,11 +6,18 @@ export const modelsData = [
   {
     title: "Динамика Скёрмса",
     text: <SkyrmsText />,
-    modelInterface: <SkyrmsModelInterface />
+    link: "https://dadaismee.github.io/skyrmsModel/",
+    // modelInterface: <SkyrmsModelInterface />
   },
   {
     title: "Модель де Гроота",
-    text: <DeGrootText />
+    text: <DeGrootText />,
+    link: ""
+  },
+  {
+    title: "DEL → EL",
+    // text:,
+    link: "https://github.com/sekhelscribere/newparser"
   },
   {
     title: "Перевод в обратную польскую запись",
@@ -20,14 +27,9 @@ export const modelsData = [
     title: "Силлогистический калькулятор",
     // text:
   },
-  {
-    title: "DEL → EL",
-    // text:,
-    link: "https://github.com/sekhelscribere/newparser"
-  },
-  {
-    title: "Перевод МакКинси-Тарского",
-    // text: ,
-    link: <a href="" target="_blank" />
-  }
+  // {
+  //   title: "Перевод МакКинси-Тарского",
+  //   // text: ,
+  //   link: <a href="" target="_blank" />
+  // }
 ]

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const OurModelListItem = ({ title, text, modelInterface }) => {
+const OurModelListItem = ({ title, text, link, modelInterface }) => {
   const [shown, setShown] = useState(false);
 
   const handleClick = () => {
@@ -17,11 +17,11 @@ const OurModelListItem = ({ title, text, modelInterface }) => {
           <div className="main_article-block" id="philosophers-web">
             <div className="main_article-block-text">
               <div className="main_article-p">{text}</div>
-              {/* <p className="main_article-link">
+              <p className="main_article-link">
                 <a href={link} target="_blank">
                   Ссылка
                 </a>
-              </p> */}
+              </p>
             </div>
             <div className="main_article-img">{modelInterface}</div>
           </div>

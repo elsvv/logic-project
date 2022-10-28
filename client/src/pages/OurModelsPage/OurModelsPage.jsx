@@ -12,6 +12,7 @@ const OurModelsPage = () => {
           <OurModelListItem
             title={data.title}
             modelInterface={data.modelInterface}
+            link={data.link}
             text={data.text}
             key={data.link}
           />
