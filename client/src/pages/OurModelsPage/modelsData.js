@@ -1,6 +1,5 @@
 import SkyrmsText from "./SkyrmsModel/SkyrmsText";
 import DeGrootText from "./DeGrootModel/DeGrootText";
-import SkyrmsModelInterface from "./SkyrmsModel/SkyrmsModelInterface"
 
 export const modelsData = [
   {

@@ -349,7 +349,7 @@ class InPho extends Component {
     if (this.props.draggie) {
       return (
         <div className="draggie">
-          <Controls controls={this.props.controls} />
+          {/* <Controls controls={this.props.controls} /> */}
         </div>
       );
     }
