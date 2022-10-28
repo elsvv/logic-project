@@ -11,7 +11,7 @@ import message from "../utils/message";
 import encodeToURI from "../utils/encodeToURI";
 import generateTable from "../utils/generateTable";
 import isTableValid from "../utils/isTableValid";
-import { VALUE_FORMAT } from "../config";
+import { BASE_URL, VALUE_FORMAT } from "../config";
 
 const LATEX_INPUT_TABEL = [{ tex: "\\wedge", oper: "v" }];
 
@@ -49,7 +49,7 @@ const TruthTablePage = () => {
     setLoading(true);
     const formula = formulasRaw.split(",").map((f) => f.trim());
 
-    post("http://127.0.0.1:5000/api/truthtable", { formula, valueFormat })
+    post(BASE_URL + "/api/truthtable", { formula, valueFormat })
       .then((res) => {
         if (res.status === 500) return Promise.reject(res);
         return res;
