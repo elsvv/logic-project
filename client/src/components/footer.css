@@ -1,0 +1,22 @@
+.main_footer-container {
+  display: flex;
+  flex-direction: row;
+}
+
+/* .main_footer-container p, span {
+  font-size: 12px;
+} */
+
+.main_footer-funding {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 2;
+}
+
+.main_footer-year {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1
+}

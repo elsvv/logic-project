@@ -7,18 +7,22 @@ const AboutPage = () => {
   return (
     <div className="about-page__container">
       <h1>About</h1>
-      <p>
-        The International Laboratory for Logic, Linguistics and Formal
-        Philosophy (LLFP) was founded on April 16, 2018 based on the results of
-        the project competition for creating international laboratories at the
-        Higher School of Economics for the period from April 2018 to December
-        2020.
-      </p>
+      <span class="v118_208">Интерактивные модели для расчёта и визуализации динамики Скёрмса, динамики деГроота, динамической
+      эпистемической логики и других увлекательных вещей. А также список моделей и инструментов для учёбы и
+      исследований. 
+      </span>
+    
+      <span class="v128_2">Проект создан лабораторией логики, лингвистики и формальной философии
       <Divider />
-      <p>
-        Демонстрационная страница для <Text strong>конкурса</Text> на создание
-        проектных групп.
-      </p>
+      <h3>Команда проекта:</h3>
+      <ul>
+        <li>Виталий Долгоруков</li>
+        <li>Денис Федянин</li>
+        <li>Елена Попова</li>
+        <li>Даниил Хайтович</li>
+        <li>Валерий Шевченко</li>
+      </ul>
+    </span>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const OtherModelListItem = ({ title, img, text, link }) => {
+const OurModelListItem = ({ title, text, link, modelInterface }) => {
   const [shown, setShown] = useState(false);
 
   const handleClick = () => {
@@ -23,9 +23,7 @@ const OtherModelListItem = ({ title, img, text, link }) => {
                 </a>
               </p>
             </div>
-            <a href={link} target="_blank">
-              <img src={img} alt="Philosopher's Web" className="main_article-img" />
-            </a>
+            <div className="main_article-img">{modelInterface}</div>
           </div>
         )}
       </article>
@@ -33,4 +31,4 @@ const OtherModelListItem = ({ title, img, text, link }) => {
   );
 };
 
-export default OtherModelListItem;
+export default OurModelListItem;
