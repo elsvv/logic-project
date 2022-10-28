@@ -1,3 +1,4 @@
+import os
 from flask import Flask, send_from_directory
 from flask_restful import Api
 from flask_cors import CORS  # comment this on deployment
@@ -13,3 +14,6 @@ def serve(path):
 
 
 api.add_resource(TruthTableHandler, '/api/truthtable')
+
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
