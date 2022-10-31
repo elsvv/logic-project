@@ -2,4 +2,4 @@
 nixPkgs = ['node2nix', 'nodePackages.npm', 'python39', 'gcc']
 
 [phases.build]
-cmds = ['cd client', 'npm install', 'npm run build', 'cd ..']
+cmds = ['cd client && npm install && npm run build']
