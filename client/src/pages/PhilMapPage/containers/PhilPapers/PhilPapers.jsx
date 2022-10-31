@@ -165,11 +165,11 @@ class PhilPapers extends Component {
               preview={this.state.preview}
               handleOption={this.handleOption}
             />
-            <Button
+            {/* <Button
               text={message}
               data="philpapers"
               handleClick={buttonHandler}
-            />
+            /> */}
           </>
         ) : null}
       </div>
