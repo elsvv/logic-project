@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['node2nix', 'nodePackages.npm', 'python39', 'gcc']
+nixPkgs = ['node2nix', 'yarn', 'python39', 'gcc']
 
 [phases.build]
-cmds = ['cd client && npm install && npm run build']
+cmds = ['cd client && yarn install && yarn build']
