@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['node2nix']
+nixPkgs = ['node2nix', 'python39', 'gcc']
 
 [phases.build]
-cmds = ['cd client', 'npm install','npm run build', 'cd ..']
+cmds = ['cd client', 'npm install', 'npm run build', 'cd ..']
