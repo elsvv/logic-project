@@ -1,6 +1,6 @@
 import SkyrmsText from "./SkyrmsModel/SkyrmsText";
 import DeGrootText from "./DeGrootModel/DeGrootText";
-// import RevPolish from "./RevPolish";
+import RevPolish from "./RevPolish";
 import SyllogCalc from "./SyllogCalc";
 
 export const modelsData = [
@@ -15,11 +15,11 @@ export const modelsData = [
     text: <DeGrootText />,
     link: "https://vlrshvchnk.github.io/degroot-model/",
   },
-  // {
-  //   title: "Перевод в обратную польскую запись",
-  //   text: <RevPolish />,
-  //   link: "https://vanhalsteen.github.io/Polish-notation/revpolish.html"
-  // },
+  {
+    title: "Перевод в обратную польскую запись",
+    text: <RevPolish />,
+    link: "https://vanhalsteen.github.io/Polish-notation/revpolish.html",
+  },
   {
     title: "Силлогистический калькулятор",
     text: <SyllogCalc />,
